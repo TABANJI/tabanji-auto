@@ -5,7 +5,7 @@ window.TABANJI_LOCALES.en = {
   carMeta: { title: 'Vehicle — TABANJI AUTO', description: 'Vehicle details from the private TABANJI AUTO collection.' },
   text: {},
   ui: {
-    openMenu:'Open menu', close:'Close', languageLabel:'Language', english:'English', arabic:'العربية',
+    openMenu:'Open menu', close:'Close',
     available:'Available', new:'New Arrival', exclusive:'Exclusive', reserved:'Reserved', sold:'Sold', on_request:'On Request', viewDetails:'View Details', quickView:'Quick View', priceOnRequest:'Price on Request',
     petrol:'Petrol', diesel:'Diesel', hybrid:'Hybrid', electric:'Electric', details:'Details', allModels:'All models',
     addFavourite:'Add {model} to favourites', removeFavourite:'Remove {model} from favourites',

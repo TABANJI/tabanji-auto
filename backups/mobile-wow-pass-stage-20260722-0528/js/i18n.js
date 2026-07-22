@@ -8,11 +8,11 @@
   const heroAssets = {
     en: {
       desktop: 'assets/images/hero-tabanji-amg-desktop-v6.jpg',
-      mobile: 'assets/images/hero-tabanji-amg-mobile-final.jpg'
+      mobile: 'assets/images/hero-tabanji-amg-mobile-en.jpg'
     },
     ar: {
       desktop: 'assets/images/hero-tabanji-amg-desktop-ar-v2.jpg',
-      mobile: 'assets/images/hero-tabanji-amg-mobile-ar-final.jpg'
+      mobile: 'assets/images/hero-tabanji-amg-mobile-ar.jpg'
     }
   };
 
@@ -99,18 +99,6 @@
     updateHeroArtwork(language);
     const switcher = document.querySelector('#languageSwitcher');
     if (switcher) { switcher.textContent = 'EN | AR'; switcher.setAttribute('aria-label', language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'); }
-    document.querySelectorAll('[data-language]').forEach((button) => {
-      const active = button.dataset.language === language;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-pressed', String(active));
-      button.textContent = get(button.dataset.language === 'en' ? 'ui.english' : 'ui.arabic');
-    });
-    document.querySelectorAll('.nav__languages').forEach((group) => {
-      const label = get('ui.languageLabel');
-      group.setAttribute('aria-label', label);
-      const heading = group.querySelector('span');
-      if (heading) heading.textContent = label;
-    });
   }
   function setLanguage(next) {
     if (!supported.includes(next)) return;
@@ -123,8 +111,5 @@
   }
   window.tabanjiI18n = { t: get, getLanguage: () => language, setLanguage, translate, updateHeroArtwork };
   document.querySelector('#languageSwitcher')?.addEventListener('click', () => setLanguage(language === 'en' ? 'ar' : 'en'));
-  document.querySelectorAll('[data-language]').forEach((button) => {
-    button.addEventListener('click', () => setLanguage(button.dataset.language));
-  });
   translate();
 })();

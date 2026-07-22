@@ -1036,8 +1036,7 @@ html[dir="rtl"] .hero__media-overlay {
   }
 
   .hero {
-    min-height: 0;
-    height: auto;
+    min-height: 980px;
   }
 
   .hero__inner,
@@ -1046,26 +1045,23 @@ html[dir="rtl"] .hero__media-overlay {
   }
 
   .hero__inner {
-    min-height: 0;
+    min-height: 980px;
     grid-template-columns: 1fr;
     align-content: start;
-    padding-top: calc(86px + env(safe-area-inset-top));
+    padding-top: 72px;
   }
 
   html[dir="rtl"] .hero__inner { direction:rtl;grid-template-columns:1fr }
-  html[dir="rtl"] .hero__content { grid-column:1;grid-row:1;padding:28px 0 24px }
+  html[dir="rtl"] .hero__content { grid-column:1;grid-row:1;padding:46px 0 24px }
   html[dir="rtl"] .hero__media { grid-column:1;grid-row:2;width:100%;margin-left:0 }
 
   .hero__content {
-    padding: 28px 0 24px;
+    padding: 46px 0 24px;
   }
 
   .hero h1 {
-    max-width: 100%;
-    margin:10px 0 12px;
-    font-size: clamp(2.75rem, 12.8vw, 3.85rem);
-    line-height:.92;
-    letter-spacing:-.04em;
+    max-width: 620px;
+    font-size: clamp(2.9rem, 8vw, 3.25rem);
   }
 
   .hero .eyebrow {
@@ -1073,9 +1069,7 @@ html[dir="rtl"] .hero__media-overlay {
   }
 
   .hero__copy {
-    max-width:100%;
-    font-size: clamp(.91rem, 3.8vw, 1rem);
-    line-height:1.52;
+    font-size: clamp(0.96rem, 1vw, 1.08rem);
   }
 
   .hero h1 .text-accent {
@@ -1084,19 +1078,15 @@ html[dir="rtl"] .hero__media-overlay {
 
   .hero__actions {
     flex-direction: column;
-    gap:10px;
-    margin:18px 0 18px;
   }
 
   .hero__actions .btn {
-    width:100%;
     min-height: 52px;
     padding-inline: 25px;
   }
 
   .hero__stats {
     grid-template-columns: 1fr 1fr;
-    max-width:none;
   }
 
   .hero__stat {
@@ -1116,35 +1106,18 @@ html[dir="rtl"] .hero__media-overlay {
 
   .hero__media {
     width: 100%;
-    min-height: 0;
-    height:auto;
-    aspect-ratio:4/5;
-    border-block:1px solid rgba(198,155,69,.2);
-    border-radius:10px;
+    min-height: 390px;
+    height: 390px;
   }
 
   .hero__media img {
-    object-fit:cover;
-    object-position:center;
+    object-position: 58% center;
     transform: none;
   }
 
-  .hero__media-overlay { background:linear-gradient(0deg,rgba(5,5,5,.2),transparent 28%) }
-  .hero__scroll { display:none }
-
-  .brands { min-height:0;padding:18px 0 }
-  .brands__label { margin-bottom:10px }
-
   .brands__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap:6px;
   }
-
-  .brand-link { height:60px;border-radius:6px }
-  .brand-logo { transform:scale(1.14) }
-  .brand-logo--audi,.brand-logo--mclaren,.brand-logo--aston-martin,.brand-logo--bentley { transform:scale(1.22) }
-  .brand-logo--range-rover { transform:scale(1.02) }
-  .brand-link::after { height:26px!important;opacity:.42 }
 
   .brand-link:nth-child(6n)::after {
     display: block;
@@ -1160,53 +1133,21 @@ html[dir="rtl"] .hero__media-overlay {
     grid-template-columns: 1fr;
   }
 
-  .search { padding:18px 0 10px;scroll-margin-top:calc(100px + env(safe-area-inset-top)) }
-  .search .container { padding:26px 20px 30px;border:1px solid rgba(198,155,69,.3);border-radius:12px;background:linear-gradient(145deg,#171717,#0d0d0d) }
-  .search__form { gap:19px }
-  .search .field { gap:8px }
-  .search select,.search input { min-height:60px;padding:12px 4px;font-size:1rem }
-  .search .btn { width:100%;min-height:58px;margin-top:2px }
-
-  #collection { padding:72px 0 68px }
-  #collection .section-head { gap:15px;margin-bottom:28px }
-  #collection .section-head h2 { max-width:100%;font-size:clamp(2.55rem,11.5vw,3.5rem);line-height:.94 }
-  #collection .section-head p { max-width:31rem;margin-top:0;transform:none }
-  .cars-grid { gap:20px }
-  .car-card { min-height:0;border-radius:12px;box-shadow:0 22px 52px rgba(0,0,0,.5) }
-
   .car-card__media {
-    height:auto;
-    aspect-ratio:4/3;
+    height: 270px;
   }
 
   .car-card h3 {
-    min-height:0;font-size:clamp(1.6rem,7vw,1.9rem);margin:7px 0 12px;
+    font-size: clamp(1.65rem, 2vw, 2rem);
   }
-
-  .car-card__body { padding:20px }
-  .car-card__bottom { padding-top:14px }
-  .fav { width:44px;height:44px }
 
   .car-card__price {
     font-size: 1.05rem;
   }
 
   .standard__image {
-    height:310px;border-radius:10px;
+    height: 350px;
   }
-
-  .standard { padding:64px 0 }
-  .standard__grid { gap:24px }
-  .standard h2,.promo h2,.services h2,.final-cta h2 { font-size:clamp(2.55rem,11.5vw,3.65rem);line-height:.96 }
-  .principle { padding:18px 0;grid-template-columns:38px 1fr;gap:12px }
-  .promo { min-height:540px;background-position:65% center;filter:brightness(1.12) }
-  .promo::before { background:linear-gradient(0deg,rgba(5,5,5,.86),rgba(5,5,5,.2)),linear-gradient(90deg,rgba(5,5,5,.68),transparent) }
-  .promo__content { padding:150px 0 54px;filter:brightness(.9) }
-  .services { padding:76px 0 }
-  .services__grid { gap:10px;border:0 }
-  .service { min-height:170px;padding:24px;border:1px solid var(--line);border-radius:8px }
-  .stats { padding:50px 0 }
-  .final-cta { padding:70px 0 calc(70px + env(safe-area-inset-bottom)) }
 
   .quotes {
     display: flex;
@@ -1222,11 +1163,11 @@ html[dir="rtl"] .hero__media-overlay {
 
 @media (max-width: 480px) {
   .hero {
-    min-height: 0;
+    min-height: 900px;
   }
 
   .hero__inner {
-    min-height: 0;
+    min-height: 900px;
   }
 
   .hero h1 {
@@ -1234,8 +1175,8 @@ html[dir="rtl"] .hero__media-overlay {
   }
 
   .hero__media {
-    min-height:0;
-    height:auto;
+    min-height: 300px;
+    height: 300px;
   }
 
   .search .container {
@@ -1268,4 +1209,67 @@ html[dir="rtl"] .hero__media-overlay {
   .brand-link {
     transition: none;
   }
+}
+
+/* Independent mobile homepage composition */
+@media (max-width: 768px) {
+  .hero,.hero__inner { min-height:820px;height:auto }
+  .hero__inner { padding-top:76px;display:grid;grid-template-rows:auto 340px }
+  .hero__content { padding:34px 0 22px;justify-content:flex-start }
+  .hero h1 { margin:10px 0 12px;font-size:clamp(2.85rem,13.5vw,4rem);line-height:.92;letter-spacing:-.045em }
+  .hero__copy { max-width:34rem;font-size:.93rem;line-height:1.55 }
+  .hero__actions { margin:18px 0 20px;gap:10px }
+  .hero__actions .btn { width:100%;min-height:52px }
+  .hero__stats { max-width:none }
+  .hero__stat { min-height:68px;padding-top:10px }
+  .hero__media { height:340px;min-height:340px;border-radius:10px 10px 0 0 }
+  .hero__media img { object-position:58% center }
+  .hero__media-overlay { background:linear-gradient(0deg,rgba(5,5,5,.55),transparent 28%),linear-gradient(90deg,rgba(5,5,5,.28),transparent 32%) }
+  .hero__scroll { display:none }
+  .brands { min-height:0;padding:18px 0 }
+  .brands__label { margin-bottom:12px }
+  .brands__list { grid-template-columns:repeat(3,1fr);gap:8px }
+  .brand-link { height:58px;border-radius:6px }
+  .brand-logo { transform:scale(1.05) }
+  .brand-link::after { height:28px!important }
+  .search { padding:14px 0 0 }
+  .search .container { padding:24px 18px;border-radius:12px }
+  .search__form { display:grid;grid-template-columns:1fr;gap:18px }
+  .search .field { gap:7px }
+  .search select,.search input { min-height:48px;padding:9px 4px;font-size:16px }
+  .search .btn { width:100%;min-height:54px }
+  #collection { padding-top:62px }
+  #collection .section-head h2 { font-size:clamp(2.7rem,12vw,3.6rem) }
+  #collection .section-head p { transform:none }
+  .cars-grid { gap:18px }
+  .car-card { min-height:0;border-radius:14px;box-shadow:0 22px 54px rgba(0,0,0,.5) }
+  .car-card__media { height:320px }
+  .car-card__body { padding:20px }
+  .car-card h3 { min-height:auto;font-size:1.75rem;margin:7px 0 15px }
+  .car-card__bottom { padding-top:15px }
+  .fav { width:44px;height:44px }
+  .standard__grid { gap:28px }
+  .standard__image { height:310px;border-radius:10px;object-position:center }
+  .standard h2,.promo h2,.final-cta h2 { font-size:clamp(2.7rem,12vw,3.8rem) }
+  .principle { padding:18px 0 }
+  .promo { min-height:560px;background-position:68% center }
+  .promo::before { background:linear-gradient(0deg,rgba(5,5,5,.96),rgba(5,5,5,.28)),linear-gradient(90deg,rgba(5,5,5,.82),transparent) }
+  .promo__content { padding-top:180px }
+  .services__grid { gap:10px;border:0 }
+  .service { min-height:170px;padding:24px;border:1px solid var(--line);border-radius:8px }
+  .stats { padding:52px 0 }
+  .stats__grid { gap:0 }
+  .stat { padding:16px 10px }
+  .quotes { gap:14px;padding-bottom:8px }
+  .quote { min-width:82vw;padding:22px 4px }
+  .final-cta { padding-block:78px }
+  html[dir="rtl"] .hero__media img { object-position:42% center }
+}
+
+@media (max-width: 390px) {
+  .hero,.hero__inner { min-height:790px }
+  .hero__inner { grid-template-rows:auto 300px }
+  .hero__media { height:300px;min-height:300px }
+  .hero h1 { font-size:3rem }
+  .car-card__media { height:285px }
 }
