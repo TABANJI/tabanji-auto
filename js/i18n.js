@@ -8,11 +8,11 @@
   const heroAssets = {
     en: {
       desktop: 'assets/images/hero-tabanji-amg-desktop-v6.jpg',
-      mobile: 'assets/images/hero-tabanji-amg-final.jpg'
+      mobile: 'assets/images/hero-tabanji-amg-mobile-en.jpg'
     },
     ar: {
       desktop: 'assets/images/hero-tabanji-amg-desktop-ar-v2.jpg',
-      mobile: 'assets/images/hero-tabanji-amg-final.jpg'
+      mobile: 'assets/images/hero-tabanji-amg-mobile-ar.jpg'
     }
   };
 

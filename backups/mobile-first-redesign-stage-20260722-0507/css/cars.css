@@ -762,28 +762,3 @@ html[dir="rtl"] .quick-layout h2,html[dir="rtl"] .quick-specs { direction:ltr;un
 .empty-state { background:#111; border:1px solid #252525 }
 .car-placeholder__hero::after { background:linear-gradient(0deg,rgba(5,5,5,.98),rgba(5,5,5,.18) 75%) }
 @media(max-width:1100px) { .filters { background:#111; box-shadow:22px 0 70px rgba(0,0,0,.55) } }
-
-@media (max-width: 768px) {
-  .catalog-hero { min-height:500px;padding:120px 0 54px;background-position:62% center }
-  .catalog-hero h1 { font-size:clamp(3rem,14vw,4.6rem);line-height:.94 }
-  .catalog-toolbar { top:76px }
-  .catalog-toolbar__inner { min-height:130px;padding:14px 0;grid-template-columns:1fr auto }
-  .filter-open { min-height:46px }
-  .sort-control { align-items:stretch;flex-direction:column;gap:7px }
-  .sort-control select { width:100%;min-height:48px;font-size:16px }
-  .chips { min-height:54px;padding-block:10px }
-  .catalog-grid { gap:18px }
-  .catalog-card { min-height:0;border-radius:14px;overflow:hidden;box-shadow:0 22px 54px rgba(0,0,0,.48) }
-  .catalog-card__media,.catalog-grid.list .catalog-card__media { height:315px }
-  .catalog-card__body { padding:20px }
-  .catalog-card h3 { min-height:auto;font-size:1.8rem;margin-bottom:15px }
-  .catalog-card__footer { gap:14px;padding-top:16px }
-  .card-actions { width:100%;flex-wrap:wrap;justify-content:space-between }
-  .quick-button { min-height:44px }
-  .filters { padding:92px 20px 28px;width:min(92vw,430px);border-radius:0 12px 12px 0 }
-  html[dir="rtl"] .filters { border-radius:12px 0 0 12px;padding:92px 20px 28px }
-  .quick-view { padding:10px }
-  .quick-view__panel { border-radius:12px }
-  .quick-layout img { height:300px;min-height:300px }
-  .quick-layout__body { padding:28px 20px }
-}

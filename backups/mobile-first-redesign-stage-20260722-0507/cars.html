@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TABANJI AUTO — Private Automotive Collection</title>
+    <meta name="description" content="A curated selection of performance and luxury automobiles with verified provenance.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_LB">
+    <meta name="theme-color" content="#050505">
+    <meta property="og:title" content="TABANJI AUTO — Private Automotive Collection">
+    <meta property="og:description" content="A curated selection of performance and luxury automobiles with verified provenance.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80">
+    <link rel="canonical" href="https://example.com/cars.html">
+    <link rel="alternate" hreflang="en" href="https://example.com/cars.html?lang=en">
+    <link rel="alternate" hreflang="ar" href="https://example.com/cars.html?lang=ar">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/cars.html">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/cars.css">
+    <script type="application/ld+json">
+      {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "TABANJI Private Collection",
+      "numberOfItems": 16,
+      "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Mercedes-Benz AMG GT R Pro"},
+      {"@type":"ListItem","position":2,"name":"Porsche Panamera Turbo S"},
+      {"@type":"ListItem","position":3,"name":"Bentley Continental GT Speed"},
+      {"@type":"ListItem","position":4,"name":"Lamborghini Huracán LP 610-4"},
+      {"@type":"ListItem","position":5,"name":"Range Rover Sport Autobiography"},
+      {"@type":"ListItem","position":6,"name":"Ferrari F8 Tributo"},
+      {"@type":"ListItem","position":7,"name":"BMW M5 Competition"},
+        {"@type":"ListItem","position":8,"name":"Rolls-Royce Wraith Black Badge"},
+        {"@type":"ListItem","position":9,"name":"Audi RS 6 Avant GT"},
+        {"@type":"ListItem","position":10,"name":"McLaren 720S"},
+        {"@type":"ListItem","position":11,"name":"Aston Martin Vantage"},
+        {"@type":"ListItem","position":12,"name":"Maserati GranTurismo MC"},
+        {"@type":"ListItem","position":13,"name":"Ferrari 458 Speciale"},
+        {"@type":"ListItem","position":14,"name":"Audi RS 6 Avant Performance"},
+        {"@type":"ListItem","position":15,"name":"Range Rover Vogue Autobiography"},
+        {"@type":"ListItem","position":16,"name":"Mercedes-Benz AMG GT S"}
+      ]
+      }
+    </script>
+  </head>
+  <body data-page="catalog">
+    <header class="header scrolled">
+      <div class="site-shell header__inner">
+        <a class="logo" href="index.html">TABANJI <small>AUTO</small>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a class="active" href="cars.html" aria-current="page">Cars</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#standard">About</a>
+          <a href="#contacts">Contact</a>
+        </nav>
+        <div class="header__tools">
+          <button class="lang" id="languageSwitcher" type="button" aria-label="Switch to Arabic">EN | AR</button>
+          <button class="icon-btn header-action search-toggle" id="searchShortcut" type="button" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.75"></circle><path d="m16 16 4.25 4.25"></path></svg></button>
+          <button class="icon-btn header-action favorites-toggle" id="favoritesShortcut" type="button" aria-label="Show favourites">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"></path></svg><span class="favorite-count">0</span>
+          </button>
+          <button class="btn" data-modal="Private Consultation">Contact Us</button>
+          <button class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="catalog-hero">
+        <div class="container catalog-hero__content reveal">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>—</span>
+            <span aria-current="page">Cars</span>
+          </nav>
+          <span class="eyebrow">TABANJI Private Collection</span>
+          <h1 class="display">The Automotive Collection</h1>
+          <p>A curated selection of performance and luxury automobiles with verified provenance.</p>
+          <strong>
+            <span id="heroCount">16</span> vehicles in the private showroom</strong>
+        </div>
+      </section>
+      <section class="catalog" aria-labelledby="catalogTitle">
+        <h2 class="sr-only" id="catalogTitle">Catalog and filters</h2>
+        <div class="catalog-toolbar">
+          <div class="container catalog-toolbar__inner">
+            <div class="catalog-toolbar__count" aria-live="polite">
+              <strong id="resultCount">0</strong>
+              <span> found</span>
+            </div>
+            <button class="filter-open btn btn--ghost" id="filterOpen" type="button" aria-expanded="false">
+              Filters <span id="filterBadge">
+              </span>
+            </button>
+            <label class="sort-control">Sort by
+              <select id="sort">
+                <option value="featured">Recommended</option>
+                <option value="new">Newest Arrivals</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="year-desc">Year: Newest First</option>
+                <option value="mileage-asc">Mileage: Lowest First</option>
+                <option value="power-desc">Power: Highest First</option>
+              </select>
+            </label>
+            <div class="view-switch" aria-label="Catalog view">
+              <button type="button" data-view="grid" aria-pressed="true">Grid</button>
+              <button type="button" data-view="list" aria-pressed="false">List</button>
+            </div>
+            <button class="toolbar-reset" id="toolbarReset" type="button" hidden>Reset</button>
+          </div>
+        </div>
+        <div class="container chips" id="activeChips" aria-live="polite">
+        </div>
+        <div class="container catalog-layout" id="catalog-filters">
+          <div class="filter-overlay" id="filterOverlay">
+          </div>
+          <aside class="filters" id="filters" aria-label="Vehicle filters">
+            <div class="filters__head">
+              <div>
+                <span class="eyebrow">Private Selection</span>
+                <h2>Filters</h2>
+              </div>
+              <button class="icon-btn filter-close" id="filterClose" type="button" aria-label="Close filters">×</button>
+            </div>
+            <form id="filterForm">
+              <fieldset>
+                <legend>MAIN PARAMETERS</legend>
+                <label>Search<input name="q" type="search" placeholder="Brand or model">
+                </label>
+                <label>Brand<select name="brand">
+                    <option value="">All brands</option>
+                  </select>
+                </label>
+                <label>Model<select name="model">
+                    <option value="">All models</option>
+                  </select>
+                </label>
+                <label>Status<select name="status">
+                    <option value="">All statuses</option>
+                  </select>
+                </label>
+                <div class="filter-row">
+                  <label>Year From<input name="yearMin" type="number" min="2000" max="2030">
+                  </label>
+                  <label>Year To<input name="yearMax" type="number" min="2000" max="2030">
+                  </label>
+                </div>
+                <div class="filter-row">
+                  <label>Price From<input name="priceMin" type="number" min="0" step="10000">
+                  </label>
+                  <label>Price To<input name="priceMax" type="number" min="0" step="10000">
+                  </label>
+                </div>
+                <label>Maximum Mileage<input name="mileageMax" type="number" min="0" step="1000">
+                </label>
+              </fieldset>
+              <fieldset>
+                <legend>TECHNICAL PARAMETERS</legend>
+                <label>Fuel<select name="fuel">
+                    <option value="">All types</option>
+                  </select>
+                </label>
+                <label>Transmission<select name="transmission">
+                    <option value="">All transmissions</option>
+                  </select>
+                </label>
+                <label>Body Type<select name="bodyType">
+                    <option value="">All body types</option>
+                  </select>
+                </label>
+                <label>Drive<select name="drive">
+                    <option value="">All types</option>
+                  </select>
+                </label>
+                <label>Minimum Power<input name="powerMin" type="number" min="0" step="50">
+                </label>
+              </fieldset>
+              <div class="filters__actions">
+                <button class="btn" id="filterApply" type="button">Show <span id="drawerCount">0</span> vehicles</button>
+                <button class="text-link" id="filterReset" type="button">Reset Filters</button>
+              </div>
+            </form>
+          </aside>
+          <div class="catalog-results">
+            <div class="catalog-grid" id="catalogGrid">
+            </div>
+            <div class="catalog-progress">
+              <p id="shownCount">Showing 0 of 0</p>
+              <button class="btn btn--ghost" id="loadMore" type="button">Show More</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer" id="contacts">
+      <div class="container footer__grid">
+        <div>
+          <a class="logo" href="index.html">TABANJI <small>AUTO</small>
+          </a>
+          <p class="footer__description">Private Automotive Collection</p>
+        </div>
+        <div>
+          <h2>Collection</h2>
+          <ul>
+            <li>
+              <a href="cars.html">All Cars</a>
+            </li>
+            <li>
+              <button class="footer-link" data-modal="Private Sourcing">Private Sourcing</button>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul>
+            <li>+00 000 000 00 00</li>
+            <li>hello@tabanji-auto.example</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <div class="quick-view" id="quickView" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="quickTitle">
+      <div class="quick-view__panel" tabindex="-1">
+        <button class="icon-btn quick-close" type="button" aria-label="Close">×</button>
+        <div id="quickContent">
+        </div>
+      </div>
+    </div>
+    <div class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+      <div class="modal__panel" tabindex="-1">
+        <button class="icon-btn modal__close" type="button" aria-label="Close dialog">×</button>
+        <span class="eyebrow">Private Request</span>
+        <h2 class="display" id="modalTitle">Private Consultation</h2>
+        <p class="modal__intro">Leave your details and a private advisor will contact you discreetly.</p>
+        <form id="leadForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Name *</label>
+              <input id="name" name="name" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone *</label>
+              <input id="phone" name="phone" type="tel" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email">
+            </div>
+            <div class="field">
+              <label for="car">Desired Vehicle</label>
+              <input id="car" name="car">
+            </div>
+            <div class="field field--wide">
+              <label for="message">Message</label>
+              <textarea id="message" name="message">
+              </textarea>
+            </div>
+            <label class="check field--wide">
+              <input name="privacy" type="checkbox" required> I agree to the Privacy Policy.</label>
+          </div>
+          <button class="btn" type="submit">Send Request</button>
+          <p class="form-note" aria-live="polite">
+          </p>
+        </form>
+      </div>
+    </div>
+    <button class="icon-btn to-top" aria-label="Back to top">↑</button>
+    <script src="locales/en.js"></script>
+    <script src="locales/ar.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="data/cars.js">
+    </script>
+    <script src="js/global.js">
+    </script>
+    <script src="js/cars.js">
+    </script>
+  </body>
+  </html>

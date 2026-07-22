@@ -61,7 +61,6 @@
     const wasOpen = nav.classList.contains('open');
     nav.classList.remove('open');
     menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', t('ui.openMenu'));
     syncBodyLock();
 
     if (wasOpen && restoreFocus) {
@@ -143,11 +142,7 @@
   menuButton.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('open');
     menuButton.setAttribute('aria-expanded', String(isOpen));
-    menuButton.setAttribute('aria-label', isOpen ? t('ui.close') : t('ui.openMenu'));
     syncBodyLock();
-    if (isOpen && window.matchMedia('(max-width: 768px)').matches) {
-      window.requestAnimationFrame(() => nav.querySelector('a')?.focus());
-    }
   });
 
   nav.addEventListener('click', (event) => {
@@ -185,21 +180,6 @@
         closeModal();
       } else if (nav.classList.contains('open')) {
         closeMenu({ restoreFocus: true });
-      }
-      return;
-    }
-
-    if (event.key === 'Tab' && nav.classList.contains('open') && window.matchMedia('(max-width: 768px)').matches) {
-      const focusableNav = [...nav.querySelectorAll('a[href]'), menuButton];
-      const first = focusableNav[0];
-      const last = focusableNav.at(-1);
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
       }
       return;
     }
