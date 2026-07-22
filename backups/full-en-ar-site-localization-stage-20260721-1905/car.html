@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vehicle — TABANJI AUTO</title>
+    <meta name="description" content="Vehicle details from the private TABANJI AUTO collection.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_LB">
+    <meta name="theme-color" content="#050505">
+    <link rel="canonical" href="https://example.com/car.html">
+    <link rel="alternate" hreflang="en" href="https://example.com/car.html?lang=en">
+    <link rel="alternate" hreflang="ar" href="https://example.com/car.html?lang=ar">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/car.html">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/cars.css">
+  </head>
+  <body data-page="car">
+    <header class="header scrolled">
+      <div class="site-shell header__inner">
+        <a class="logo" href="index.html">TABANJI <small>AUTO</small>
+        </a>
+        <nav class="nav" aria-label="Головна навігація">
+          <a class="active" href="cars.html">Автомобілі</a>
+          <a href="index.html#services">Послуги</a>
+          <a href="index.html#standard">Про нас</a>
+          <a href="#contacts">Контакти</a>
+        </nav>
+        <div class="header__tools">
+          <button class="lang" id="languageSwitcher" type="button" aria-label="Switch to Arabic">EN | AR</button>
+          <button class="icon-btn header-action search-toggle" id="searchShortcut" type="button" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.75"></circle><path d="m16 16 4.25 4.25"></path></svg></button>
+          <button class="icon-btn header-action favorites-toggle" id="favoritesShortcut" type="button" aria-label="Show favourites"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"></path></svg><span class="favorite-count">0</span>
+          </button>
+          <button class="btn" data-modal="Приватна консультація">Зв’язатися</button>
+          <button class="icon-btn menu-btn" aria-label="Відкрити меню" aria-expanded="false">☰</button>
+        </div>
+      </div>
+    </header>
+    <main class="car-placeholder" id="carPlaceholder" aria-live="polite">
+    </main>
+    <footer class="footer" id="contacts">
+      <div class="container footer__grid">
+        <div>
+          <a class="logo" href="index.html">TABANJI <small>AUTO</small>
+          </a>
+          <p class="footer__description">Приватний салон преміальних автомобілів.</p>
+        </div>
+        <div>
+          <h2>Навігація</h2>
+          <ul>
+            <li>
+              <a href="cars.html">Каталог</a>
+            </li>
+            <li>
+              <a href="index.html">Головна</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <div class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+      <div class="modal__panel" tabindex="-1">
+        <button class="icon-btn modal__close" type="button" aria-label="Закрити">×</button>
+        <span class="eyebrow">Private Request</span>
+        <h2 class="display" id="modalTitle">Приватна консультація</h2>
+        <p class="modal__intro">Залиште контакт — персональний менеджер відповість конфіденційно.</p>
+        <form id="leadForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Ім’я *</label>
+              <input id="name" name="name" required>
+            </div>
+            <div class="field">
+              <label for="phone">Телефон *</label>
+              <input id="phone" name="phone" type="tel" required>
+            </div>
+            <div class="field field--wide">
+              <label for="message">Повідомлення</label>
+              <textarea id="message" name="message">
+              </textarea>
+            </div>
+            <label class="check field--wide">
+              <input name="privacy" type="checkbox" required> Погоджуюся з політикою конфіденційності.</label>
+          </div>
+          <button class="btn" type="submit">Надіслати запит</button>
+          <p class="form-note" aria-live="polite">
+          </p>
+        </form>
+      </div>
+    </div>
+    <button class="icon-btn to-top" aria-label="Повернутися нагору">↑</button>
+    <script src="locales/en.js"></script>
+    <script src="locales/ar.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="data/cars.js">
+    </script>
+    <script src="js/global.js">
+    </script>
+    <script src="js/car.js">
+    </script>
+  </body>
+  </html>
