@@ -1132,30 +1132,19 @@ html[dir="rtl"] .hero__media-overlay {
   .hero__media-overlay { background:linear-gradient(0deg,rgba(5,5,5,.2),transparent 28%) }
   .hero__scroll { display:none }
 
-  .brands { min-height:0;padding:18px 0 28px }
-  .brands__label { margin-bottom:26px }
+  .brands { min-height:0;padding:18px 0 }
+  .brands__label { margin-bottom:10px }
 
   .brands__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap:6px;
-    row-gap:14px;
+    gap:6px;
   }
 
-  .brand-link { height:120px;min-height:120px;border-radius:6px;display:grid;place-items:center }
-  .brand-logo { width:var(--mobile-logo-width,70%);height:72px;max-width:100%;max-height:72px;transform:translateY(var(--mobile-logo-y,0));-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat }
-  .brand-logo--mercedes { --mobile-logo-width:60% }
-  .brand-logo--bmw { --mobile-logo-width:58% }
-  .brand-logo--audi { --mobile-logo-width:88% }
-  .brand-logo--porsche { --mobile-logo-width:52% }
-  .brand-logo--ferrari { --mobile-logo-width:47%;--mobile-logo-y:2px }
-  .brand-logo--lamborghini { --mobile-logo-width:50%;--mobile-logo-y:2px }
-  .brand-logo--bentley { --mobile-logo-width:92% }
-  .brand-logo--rolls-royce { --mobile-logo-width:38%;--mobile-logo-y:-2px }
-  .brand-logo--range-rover { --mobile-logo-width:68% }
-  .brand-logo--mclaren { --mobile-logo-width:94% }
-  .brand-logo--maserati { --mobile-logo-width:48%;--mobile-logo-y:-2px }
-  .brand-logo--aston-martin { --mobile-logo-width:96% }
-  .brand-link::after { height:54px!important;opacity:.28 }
+  .brand-link { height:60px;border-radius:6px }
+  .brand-logo { transform:scale(1.14) }
+  .brand-logo--audi,.brand-logo--mclaren,.brand-logo--aston-martin,.brand-logo--bentley { transform:scale(1.22) }
+  .brand-logo--range-rover { transform:scale(1.02) }
+  .brand-link::after { height:26px!important;opacity:.42 }
 
   .brand-link:nth-child(6n)::after {
     display: block;
@@ -1171,7 +1160,7 @@ html[dir="rtl"] .hero__media-overlay {
     grid-template-columns: 1fr;
   }
 
-  .search { padding:12px 0 10px;scroll-margin-top:calc(100px + env(safe-area-inset-top)) }
+  .search { padding:18px 0 10px;scroll-margin-top:calc(100px + env(safe-area-inset-top)) }
   .search .container { padding:26px 20px 30px;border:1px solid rgba(198,155,69,.3);border-radius:12px;background:linear-gradient(145deg,#171717,#0d0d0d) }
   .search__form { gap:19px }
   .search .field { gap:8px }

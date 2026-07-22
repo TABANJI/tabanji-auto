@@ -133,15 +133,12 @@ button {
   gap:28px
 }
 .logo {
-  color:#D2AA59;
-  direction:ltr;
-  unicode-bidi:isolate;
   font-weight:600;
   letter-spacing:.25em
 }
 .logo small {
   font-size:.55rem;
-  color:#C40018;
+  color:var(--champagne);
   letter-spacing:.18em;
   margin-left:6px
 }
@@ -654,12 +651,9 @@ body {
   .nav__languages button::before { content:'';position:absolute;left:0;top:50%;width:5px;height:5px;border-radius:50%;background:transparent;transform:translateY(-50%) }
   .nav__languages button.active { color:var(--color-gold) }
   .nav__languages button.active::before { background:var(--red) }
-  .menu-btn { position:relative;z-index:101;padding:0;display:grid;place-items:center;font-size:0;line-height:0;background:#090909 }
-  .menu-btn::before,.menu-btn::after { content:'';grid-area:1/1;width:22px;height:2px;border-radius:2px;background:currentColor;transition:transform 260ms ease,box-shadow 260ms ease }
-  .menu-btn::before { box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor }
-  .menu-btn::after { opacity:0 }
-  .menu-btn[aria-expanded="true"]::before { box-shadow:none;transform:rotate(45deg) }
-  .menu-btn[aria-expanded="true"]::after { opacity:1;transform:rotate(-45deg) }
+  .menu-btn { position:relative;z-index:101;font-size:0;background:#090909 }
+  .menu-btn::before { content:'\2630';font-size:1.2rem;line-height:1 }
+  .menu-btn[aria-expanded="true"]::before { content:'\00d7';font-size:1.8rem }
   .section { padding:72px 0 }
   .section-head { margin-bottom:28px }
   .section-head h2 { font-size:clamp(2.45rem,11vw,3.5rem);line-height:1 }
@@ -672,11 +666,12 @@ body {
   .modal__panel { padding:34px 20px calc(24px + env(safe-area-inset-bottom));border-radius:10px }
   .form-grid { gap:14px }
   .field input,.field select,.field textarea { min-height:50px;font-size:16px }
-  .to-top { width:48px;height:48px;right:auto;inset-inline-end:20px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:30 }
-  .to-top.footer-near,.to-top.content-near { opacity:0;pointer-events:none }
+  .to-top { width:48px;height:48px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:30 }
+  .to-top.footer-near { opacity:0;pointer-events:none }
   html[dir="rtl"] .nav.open { align-items:flex-end;text-align:right }
   html[dir="rtl"] .nav__languages button { padding:0 14px 0 0;text-align:right }
   html[dir="rtl"] .nav__languages button::before { left:auto;right:0 }
+  html[dir="rtl"] .to-top { right:auto;left:16px }
   @keyframes mobile-nav-in { to { opacity:1 } }
   @keyframes mobile-nav-item { to { opacity:1;transform:none } }
 }

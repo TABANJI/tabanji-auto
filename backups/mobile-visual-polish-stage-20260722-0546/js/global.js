@@ -259,14 +259,6 @@
     }, { rootMargin: '0px 0px 72px' }).observe(footer);
   }
 
-  const mobileSearch = document.querySelector('#vehicle-search');
-  if (mobileSearch) {
-    new IntersectionObserver(([entry]) => {
-      const mobile = window.matchMedia('(max-width: 768px)').matches;
-      toTopButton.classList.toggle('content-near', mobile && entry.isIntersecting);
-    }, { threshold: 0.05 }).observe(mobileSearch);
-  }
-
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
