@@ -1,0 +1,9 @@
+# Codex backups
+backups/
+.agents/
+
+# Temporary generated files
+*.tmp
+*.bak
+Thumbs.db
+.DS_Store
