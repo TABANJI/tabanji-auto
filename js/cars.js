@@ -177,7 +177,7 @@
             <span>${technicalLabels[car.fuel] ? t(`ui.${technicalLabels[car.fuel]}`) : car.fuel}</span>
           </div>
           <p class="catalog-card__location">${car.location} · ${car.bodyType}</p>
-          <p class="catalog-card__description">${car.description}</p>
+          <p class="catalog-card__description">${car.description?.[window.tabanjiI18n?.getLanguage() || 'en'] || car.description?.en || car.description || ''}</p>
           <div class="catalog-card__footer">
             <strong class="catalog-card__price" dir="ltr">${money(car.price)}</strong>
             <div class="card-actions">
@@ -300,7 +300,7 @@
             <span>${car.transmission}</span>
             <span>${car.drive}</span>
           </div>
-          <p>${car.description}</p>
+          <p>${car.description?.[window.tabanjiI18n?.getLanguage() || 'en'] || car.description?.en || car.description || ''}</p>
           <div class="card-actions">
             <a class="btn" href="car.html?id=${encodeURIComponent(car.id)}">Details</a>
             <button class="btn btn--ghost" type="button" id="quickConsult">Private Consultation</button>

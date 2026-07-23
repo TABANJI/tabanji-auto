@@ -24,9 +24,7 @@
     const stored = window.tabanjiStorage.read('tabanjiFavorites', []);
     return Array.isArray(stored) ? stored : [];
   };
-  const description = () => language() === 'ar'
-    ? `سيارة ${car.brand} ${car.model} مختارة بعناية ضمن مجموعة تابانجي الخاصة، مع مواصفات موثقة وحالة استثنائية وخدمة تسليم دولية بسرية كاملة.`
-    : `A privately selected ${car.brand} ${car.model} with verified specification, exceptional presentation and discreet international delivery support.`;
+  const description = () => car.description?.[language()] || car.description?.en || '';
 
   function updateFavoriteCount() {
     document.querySelector('.favorite-count').textContent = favorites().length;
@@ -37,13 +35,17 @@
     const summary = description();
     document.title = title;
     document.querySelector('meta[name="description"]')?.setAttribute('content', summary);
-    document.querySelector('link[rel="canonical"]')?.setAttribute('href', `https://example.com/car.html?id=${encodeURIComponent(car.id)}`);
-    document.querySelector('link[hreflang="en"]')?.setAttribute('href', `https://example.com/car.html?id=${encodeURIComponent(car.id)}&lang=en`);
-    document.querySelector('link[hreflang="ar"]')?.setAttribute('href', `https://example.com/car.html?id=${encodeURIComponent(car.id)}&lang=ar`);
-    document.querySelector('link[hreflang="x-default"]')?.setAttribute('href', `https://example.com/car.html?id=${encodeURIComponent(car.id)}`);
+    const pageUrl = `https://tabanji.github.io/tabanji-auto/car.html?id=${encodeURIComponent(car.id)}`;
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl);
+    document.querySelector('link[hreflang="en"]')?.setAttribute('href', `${pageUrl}&lang=en`);
+    document.querySelector('link[hreflang="ar"]')?.setAttribute('href', `${pageUrl}&lang=ar`);
+    document.querySelector('link[hreflang="x-default"]')?.setAttribute('href', pageUrl);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', summary);
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', car.gallery[0]);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', summary);
+    document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', car.gallery[0]);
     const data = {
       '@context':'https://schema.org', '@type':'Vehicle', name:`${car.brand} ${car.model}`,
       brand:{ '@type':'Brand', name:car.brand }, model:car.model, vehicleModelDate:String(car.year),
@@ -51,14 +53,14 @@
       fuelType:fuel(car.fuel), vehicleTransmission:car.transmission, color:translateValue(car.color),
       image:car.gallery, description:summary,
       offers:{ '@type':'Offer', price:car.price, priceCurrency:car.currency || 'EUR',
-        availability:car.status === 'sold' ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock', url:location.href }
+        availability:car.status === 'sold' ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock', url:pageUrl }
     };
     document.querySelector('#vehicleStructuredData').textContent = JSON.stringify(data);
   }
 
   function renderNotFound() {
     document.title = `${t('ui.vehicleNotFound')} — TABANJI AUTO`;
-    root.innerHTML = `<section class="vehicle-not-found"><div class="container"><span class="eyebrow">TABANJI AUTO</span><h1>${t('ui.vehicleNotFound')}</h1><p>${t('ui.vehicleNotFoundCopy')}</p><a class="btn" href="cars.html">${t('ui.backToCollection')}</a></div></section>`;
+    root.innerHTML = `<section class="vehicle-not-found"><div class="container"><span class="eyebrow">TABANJI AUTO</span><h1>${t('ui.vehicleNotFound')}</h1><p>${t('ui.vehicleNotFoundCopy')}</p><div class="vehicle-not-found__actions"><a class="btn" href="cars.html">${t('ui.backToCollection')}</a><button class="btn btn--ghost" type="button" data-modal="${t('ui.contactConcierge')}">${t('ui.contactConcierge')}</button></div></div></section>`;
     lightbox.hidden = true;
   }
 
@@ -72,7 +74,7 @@
       score:(item.brand === car.brand ? 5 : 0) + (item.bodyType === car.bodyType ? 3 : 0)
         + (Math.abs(item.price - car.price) <= car.price * .3 ? 2 : 0)
         + (Math.abs(item.power - car.power) <= car.power * .25 ? 1 : 0)
-    })).sort((a,b) => b.score - a.score).slice(0,4).map(({ item }) => `
+    })).sort((a,b) => b.score - a.score).slice(0,3).map(({ item }) => `
       <article class="similar-card">
         <img src="${item.image}" alt="${item.brand} ${item.model}, ${item.year}" loading="lazy" decoding="async">
         <div><span dir="ltr">${item.brand} · ${item.year}</span><h3 dir="ltr">${item.model}</h3><strong dir="ltr">${money(item.price,item.currency)}</strong></div>
@@ -88,7 +90,7 @@
       <div class="car-detail container">
         <nav class="vehicle-breadcrumb" aria-label="Breadcrumb"><a href="cars.html">${t('ui.backToCollection')}</a><span aria-hidden="true">/</span><span dir="ltr">${car.brand} ${car.model}</span></nav>
         <section class="vehicle-hero">
-          <div class="vehicle-gallery" aria-label="${t('ui.vehicleGallery')}">
+          <div class="vehicle-gallery ${gallery.length < 2 ? 'vehicle-gallery--single':''}" aria-label="${t('ui.vehicleGallery')}">
             <div class="vehicle-gallery__viewport" tabindex="0">
               <div class="vehicle-gallery__track">${gallery.map((src,index) => `<button class="vehicle-gallery__slide" type="button" data-gallery-open="${index}" aria-label="${t('ui.openFullscreen')}"><img src="${src}" alt="${car.brand} ${car.model}, ${t('ui.image')} ${index+1}" ${index === 0 ? 'loading="eager" fetchpriority="high"':'loading="lazy"'} decoding="async" width="1600" height="1200"></button>`).join('')}</div>
             </div>
@@ -102,6 +104,7 @@
             <span class="eyebrow" dir="ltr">${car.brand} · ${car.year}</span>
             <h1 dir="ltr">${car.model}</h1>
             <span class="vehicle-status vehicle-status--${car.status}">${t(`ui.${car.status}`)}</span>
+            <div class="vehicle-reference"><span>${t('ui.stockNumber')} <b dir="ltr">${car.stockNumber}</b></span><span>${t('ui.location')} <b>${car.location}</b></span></div>
             <strong class="vehicle-price" dir="ltr">${money(car.price,car.currency)}</strong>
             <div class="vehicle-description"><p>${description()}</p><button type="button" data-read-more aria-expanded="false">${t('ui.readMore')}</button></div>
             <div class="vehicle-key-specs">
@@ -111,8 +114,18 @@
               ${spec(t('ui.transmission'),car.transmission)}
               ${spec(t('ui.acceleration'),`${car.acceleration} s`)}
               ${spec(t('ui.drive'),translateValue(car.drive))}
+              ${spec(t('ui.year'),car.year)}
+              ${spec(t('ui.engine'),car.engine)}
+              ${spec(t('ui.exterior'),translateValue(car.exteriorColor))}
+              ${spec(t('ui.interior'),car.interiorColor || t('ui.availableOnRequest'))}
+              ${spec(t('ui.topSpeed'),`${car.topSpeed} km/h`)}
             </div>
-            <button class="btn vehicle-request" type="button" data-modal="${t('ui.requestThisVehicle')}">${t('ui.requestThisVehicle')} <span aria-hidden="true">→</span></button>
+            <button class="btn vehicle-request" type="button" data-request-type="private-viewing" data-modal="${t('ui.bookPrivateViewing')}">${t('ui.bookPrivateViewing')} <span aria-hidden="true">→</span></button>
+            <div class="vehicle-concierge-actions">
+              <button type="button" data-request-type="video-tour" data-modal="${t('ui.requestVideoTour')}">${t('ui.requestVideoTour')}</button>
+              <button type="button" data-request-type="concierge" data-modal="${t('ui.contactConcierge')}">${t('ui.contactConcierge')}</button>
+              <button type="button" data-request-type="whatsapp" data-modal="${t('ui.whatsappUnavailable')}">${t('ui.whatsappConcierge')}</button>
+            </div>
             <div class="vehicle-secondary-actions">
               <button type="button" data-detail-fav aria-pressed="${isFavorite}">${isFavorite ? t('ui.removeFromFavourites'):t('ui.addToFavourites')}</button>
               <button type="button" data-share>${t('ui.share')}</button>
@@ -121,6 +134,7 @@
           </div>
         </section>
 
+        <section class="vehicle-section vehicle-overview"><span class="eyebrow">TABANJI AUTO</span><h2>${t('ui.vehicleOverview')}</h2><div class="vehicle-overview__copy"><p>${description()}</p><p>${t('ui.overviewSupport')}</p></div></section>
         <section class="vehicle-section"><span class="eyebrow">${t('ui.vehicleDetails')}</span><h2>${t('ui.vehicleSpecifications')}</h2>
           <div class="vehicle-accordions">
             <details open><summary>${t('ui.performance')}</summary><div>${spec(t('ui.power'),`${car.power} HP`)}${spec(t('ui.acceleration'),`${car.acceleration} s`)}${spec(t('ui.topSpeed'),`${car.topSpeed} km/h`)}</div></details>
@@ -129,11 +143,13 @@
           </div>
         </section>
 
-        <section class="vehicle-section"><span class="eyebrow">TABANJI STANDARD</span><h2>${t('ui.highlightsEquipment')}</h2><ul class="vehicle-features">${car.features.map((feature) => `<li>${translateValue(feature)}</li>`).join('')}</ul></section>
+        <section class="vehicle-section"><span class="eyebrow">TABANJI STANDARD</span><h2>${t('ui.selectedEquipment')}</h2><ul class="vehicle-features">${(car.features?.[language()] || car.features?.en || []).map((feature) => `<li>${translateValue(feature)}</li>`).join('')}</ul></section>
+        <section class="vehicle-section"><span class="eyebrow">TABANJI STANDARD</span><h2>${t('ui.provenanceHistory')}</h2><ul class="vehicle-history">${(car.history?.[language()] || car.history?.en || []).map((item) => `<li>${item}</li>`).join('')}</ul></section>
+        <section class="tabanji-standard-compact"><div><b>01</b><span>${t('ui.independentInspection')}</span></div><div><b>02</b><span>${t('ui.verifiedDocumentation')}</span></div><div><b>03</b><span>${t('ui.privateTransaction')}</span></div><div><b>04</b><span>${t('ui.enclosedDelivery')}</span></div></section>
         <section class="vehicle-consultation"><div><span class="eyebrow">TABANJI AUTO</span><h2>${t('ui.privateConsultation')}</h2><p>${description()}</p></div><button class="btn" type="button" data-modal="${t('ui.requestThisVehicle')}">${t('ui.requestThisVehicle')}</button></section>
         <section class="vehicle-section vehicle-similar"><span class="eyebrow">TABANJI COLLECTION</span><h2>${t('ui.similarVehicles')}</h2><div class="vehicle-similar__track">${similarVehicles()}</div></section>
       </div>
-      <div class="vehicle-sticky" aria-hidden="true"><strong dir="ltr">${money(car.price,car.currency)}</strong><button class="btn" type="button" data-modal="${t('ui.requestThisVehicle')}">${t('ui.request')}</button></div>
+      <div class="vehicle-sticky" aria-hidden="true"><strong dir="ltr">${money(car.price,car.currency)}</strong><button class="btn" type="button" data-request-type="private-viewing" data-modal="${t('ui.bookPrivateViewing')}">${t('ui.request')}</button></div>
       <div class="vehicle-toast" role="status" aria-live="polite"></div>`;
     configureConsultation();
     setSeo();
@@ -144,12 +160,16 @@
   function configureConsultation() {
     const form = document.querySelector('#leadForm');
     ['vehicleId','vehicleName','vehiclePrice'].forEach((name) => form.querySelector(`[name="${name}"]`)?.remove());
-    const values = { vehicleId:car.id, vehicleName:`${car.brand} ${car.model} (${car.year})`, vehiclePrice:money(car.price,car.currency) };
+    const values = { vehicleId:car.id, vehicleName:`${car.brand} ${car.model} (${car.year})`, vehiclePrice:money(car.price,car.currency), stockNumber:car.stockNumber, requestType:'private-viewing' };
     Object.entries(values).forEach(([name,value]) => {
       const input = document.createElement('input'); input.type='hidden'; input.name=name; input.value=value; form.append(input);
     });
     const message = form.elements.message;
     if (message && !message.value.trim()) message.value = `${car.brand} ${car.model} · ${car.year} · ${car.id}`;
+    root.querySelectorAll('[data-request-type]').forEach((button) => button.addEventListener('click',() => {
+      form.elements.requestType.value=button.dataset.requestType;
+      message.value=`${button.dataset.requestType} · ${car.brand} ${car.model} · ${car.year} · ${car.stockNumber}`;
+    }));
   }
 
   function wireGallery(gallery) {
@@ -176,6 +196,13 @@
     dots.forEach((dot) => dot.addEventListener('click',()=>go(Number(dot.dataset.galleryDot))));
     thumbs.forEach((thumb) => thumb.addEventListener('click',()=>go(Number(thumb.dataset.galleryThumb))));
     slides.forEach((slide,index) => slide.addEventListener('click',() => openLightbox(index,gallery,slide)));
+    if (gallery.length > 1 && matchMedia('(pointer:fine)').matches) {
+      let startX=0, startScroll=0, dragged=false;
+      viewport.addEventListener('pointerdown',(event)=>{startX=event.clientX;startScroll=viewport.scrollLeft;dragged=false;viewport.setPointerCapture(event.pointerId);viewport.classList.add('is-dragging');});
+      viewport.addEventListener('pointermove',(event)=>{if(!viewport.hasPointerCapture(event.pointerId))return;const delta=event.clientX-startX;if(Math.abs(delta)>5)dragged=true;viewport.scrollLeft=startScroll-delta;});
+      viewport.addEventListener('pointerup',(event)=>{viewport.releasePointerCapture(event.pointerId);viewport.classList.remove('is-dragging');if(dragged)go(Math.round(viewport.scrollLeft/viewport.clientWidth));});
+      slides.forEach((slide)=>slide.addEventListener('click',(event)=>{if(dragged){event.preventDefault();event.stopImmediatePropagation();dragged=false;}},true));
+    }
     setActive(0);
   }
 

@@ -449,14 +449,23 @@ window.TABANJI_CARS = [
   }
 ];
 
-// Detail-page media uses alternate crops of each vehicle's own source photograph.
-// This keeps every gallery model/color-consistent until dedicated photo sets are supplied.
+// Normalize legacy inventory into the bilingual detail-page schema without inventing provenance.
 window.TABANJI_CARS.forEach((car) => {
-  const source = car.gallery?.[0] || car.image;
-  const base = source.replace(/([?&])w=\d+/, '$1w=1800').replace(/([?&])q=\d+/, '$1q=88');
-  const focalPoints = [[.5,.5],[.38,.5],[.62,.5],[.5,.4],[.5,.6]];
-  car.gallery = focalPoints.map(([x,y]) => `${base}&h=1350&crop=focalpoint&fp-x=${x}&fp-y=${y}`);
-  car.features = Array.isArray(car.features) && car.features.length
-    ? car.features
-    : [car.engine, car.transmission, car.drive, car.color, car.bodyType].filter(Boolean);
+  car.gallery = [...new Set((car.gallery?.length ? car.gallery : [car.image]).filter(Boolean))];
+  car.drivetrain = car.drivetrain || car.drive;
+  car.exteriorColor = car.exteriorColor || car.color;
+  car.interiorColor = car.interiorColor || null;
+  car.description = typeof car.description === 'object' ? car.description : {
+    en: `A privately selected ${car.brand} ${car.model} presented with verified specification and discreet international delivery support.`,
+    ar: `سيارة ${car.brand} ${car.model} مختارة بعناية ضمن مجموعة تابانجي الخاصة، مع مواصفات موثقة وخدمة تسليم دولية بسرية كاملة.`
+  };
+  const factualFeatures = [car.engine, car.transmission, car.drivetrain, car.exteriorColor, car.bodyType].filter(Boolean);
+  car.features = car.features?.en ? car.features : { en:factualFeatures, ar:factualFeatures };
+  car.history = car.history?.en ? car.history : {
+    en:['Documentation available upon request','Inspection report available to qualified buyers','Ownership information available during private consultation'],
+    ar:['الوثائق متاحة عند الطلب','تقرير الفحص متاح للمشترين المؤهلين','معلومات الملكية متاحة خلال الاستشارة الخاصة']
+  };
+  car.badges = Array.isArray(car.badges) ? car.badges : [car.status];
+  car.vinMasked = car.vinMasked || null;
+  car.stockNumber = car.stockNumber || `TA-${String(car.year).slice(-2)}-${car.id.replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase()}`;
 });
