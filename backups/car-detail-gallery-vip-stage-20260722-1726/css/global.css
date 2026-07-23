@@ -666,9 +666,10 @@ body {
   .nav__languages button.active { color:var(--color-gold) }
   .nav__languages button.active::before { background:var(--red) }
   .menu-btn { position:relative;z-index:101;padding:0;display:grid;place-items:center;font-size:0;line-height:0;background:#090909 }
-  .menu-btn::before { content:'';grid-area:1/1;width:24px;height:18px;background:linear-gradient(currentColor,currentColor) 0 1px/24px 2px no-repeat,linear-gradient(currentColor,currentColor) 0 8px/24px 2px no-repeat,linear-gradient(currentColor,currentColor) 0 15px/24px 2px no-repeat;transition:transform 260ms ease }
-  .menu-btn::after { content:'';grid-area:1/1;width:24px;height:2px;border-radius:2px;background:currentColor;opacity:0;transition:transform 260ms ease,opacity 160ms ease }
-  .menu-btn[aria-expanded="true"]::before { height:2px;background:currentColor;transform:rotate(45deg) }
+  .menu-btn::before,.menu-btn::after { content:'';grid-area:1/1;width:22px;height:2px;border-radius:2px;background:currentColor;transition:transform 260ms ease,box-shadow 260ms ease }
+  .menu-btn::before { box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor }
+  .menu-btn::after { opacity:0 }
+  .menu-btn[aria-expanded="true"]::before { box-shadow:none;transform:rotate(45deg) }
   .menu-btn[aria-expanded="true"]::after { opacity:1;transform:rotate(-45deg) }
   .section { padding:72px 0 }
   .section-head { margin-bottom:28px }

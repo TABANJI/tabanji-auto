@@ -448,15 +448,3 @@ window.TABANJI_CARS = [
     "seats": 2
   }
 ];
-
-// Detail-page media uses alternate crops of each vehicle's own source photograph.
-// This keeps every gallery model/color-consistent until dedicated photo sets are supplied.
-window.TABANJI_CARS.forEach((car) => {
-  const source = car.gallery?.[0] || car.image;
-  const base = source.replace(/([?&])w=\d+/, '$1w=1800').replace(/([?&])q=\d+/, '$1q=88');
-  const focalPoints = [[.5,.5],[.38,.5],[.62,.5],[.5,.4],[.5,.6]];
-  car.gallery = focalPoints.map(([x,y]) => `${base}&h=1350&crop=focalpoint&fp-x=${x}&fp-y=${y}`);
-  car.features = Array.isArray(car.features) && car.features.length
-    ? car.features
-    : [car.engine, car.transmission, car.drive, car.color, car.bodyType].filter(Boolean);
-});
