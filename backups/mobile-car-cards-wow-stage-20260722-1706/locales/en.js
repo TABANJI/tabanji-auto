@@ -6,7 +6,7 @@ window.TABANJI_LOCALES.en = {
   text: {},
   ui: {
     openMenu:'Open menu', close:'Close', languageLabel:'Language', english:'English', arabic:'العربية',
-    available:'Available', new:'New Arrival', exclusive:'Exclusive', reserved:'Reserved', sold:'Sold', on_request:'On Request', viewDetails:'View Details', openVehicleDetails:'Open details for {model}', quickView:'Quick View', priceOnRequest:'Price on Request',
+    available:'Available', new:'New Arrival', exclusive:'Exclusive', reserved:'Reserved', sold:'Sold', on_request:'On Request', viewDetails:'View Details', quickView:'Quick View', priceOnRequest:'Price on Request',
     petrol:'Petrol', diesel:'Diesel', hybrid:'Hybrid', electric:'Electric', details:'Details', allModels:'All models',
     addFavourite:'Add {model} to favourites', removeFavourite:'Remove {model} from favourites',
     storageError:'The browser could not save your favourites locally.', empty:'No vehicles in the current collection match these parameters. We can source your preferred specification privately.',

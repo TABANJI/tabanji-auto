@@ -1183,50 +1183,24 @@ html[dir="rtl"] .hero__media-overlay {
   #collection .section-head h2 { max-width:100%;font-size:clamp(2.55rem,11.5vw,3.5rem);line-height:.94 }
   #collection .section-head p { max-width:31rem;margin-top:0;transform:none }
   .cars-grid { gap:20px }
-  .car-card { min-height:0;border-radius:20px;border:1px solid rgba(210,170,89,.18);background:#121212;box-shadow:0 20px 50px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.025);cursor:pointer;transition:transform 300ms ease,border-color 300ms ease,box-shadow 300ms ease }
+  .car-card { min-height:0;border-radius:12px;box-shadow:0 22px 52px rgba(0,0,0,.5) }
 
   .car-card__media {
     height:auto;
     aspect-ratio:4/3;
-    border-radius:19px 19px 0 0;
-    overflow:hidden;
   }
-
-  .car-card__media::after { inset:56% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.42));pointer-events:none }
-  .car-card__media img { width:100%;height:100%;object-fit:cover;transition:transform 320ms ease,filter 160ms ease }
 
   .car-card h3 {
-    min-height:0;max-width:100%;font-size:clamp(2.1rem,9vw,2.62rem);line-height:1.02;margin:12px 0 19px;
+    min-height:0;font-size:clamp(1.6rem,7vw,1.9rem);margin:7px 0 12px;
   }
 
-  .car-card__body { padding:24px 22px 26px }
-  .car-card__brand { overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:.75rem;letter-spacing:.16em;color:#b42a37 }
-  .car-card__meta { display:flex;flex-wrap:wrap;gap:10px 0;color:#b1b1b1;font-size:.76rem;text-transform:uppercase }
-  .car-card__meta span { display:flex;align-items:center;white-space:nowrap }
-  .car-card__meta span:not(:last-child)::after { content:'';width:1px;height:13px;margin:0 13px;background:rgba(210,170,89,.28) }
-  .car-card__bottom { margin-top:22px;padding-top:21px;gap:14px }
-  .fav { width:48px;height:48px;top:16px;right:16px;z-index:3;border-color:rgba(255,255,255,.34);background:rgba(10,10,10,.68);backdrop-filter:blur(10px);border-radius:50% }
-  .status { top:17px;left:17px;z-index:3;min-height:32px;padding:8px 12px;display:flex;align-items:center;border:1px solid rgba(255,255,255,.2);border-left:2px solid var(--color-red);background:rgba(8,8,8,.78);backdrop-filter:blur(8px);font-size:.65rem;letter-spacing:.11em }
+  .car-card__body { padding:20px }
+  .car-card__bottom { padding-top:14px }
+  .fav { width:44px;height:44px }
 
   .car-card__price {
-    white-space:nowrap;font-size:clamp(1.75rem,7.5vw,2.1rem);font-weight:700;
+    font-size: 1.05rem;
   }
-  .car-card__cta { position:relative;min-height:44px;display:inline-flex;align-items:center;gap:8px;padding:8px 0;border:0;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap }
-  .car-card__cta::after { content:'';position:absolute;inset:auto 0 4px;height:1px;background:var(--color-red);transform:scaleX(.28);transform-origin:left;transition:transform 300ms ease }
-  .car-card:hover { transform:translateY(-3px) }
-  .car-card:hover img { transform:scale(1.035);filter:contrast(1.03) brightness(1.01) }
-  .car-card:hover .car-card__cta::after,.car-card:focus-within .car-card__cta::after { transform:scaleX(1) }
-  .car-card:active { transform:scale(.995);border-color:rgba(196,0,24,.62) }
-  .car-card:active img { transform:scale(1.035);filter:brightness(.94) }
-  .car-card:focus-within { border-color:rgba(196,0,24,.7) }
-  .car-card:hover .car-card__cta span,.car-card:focus-within .car-card__cta span { transform:translateX(4px) }
-  html[dir="rtl"] .fav { right:auto;left:16px }
-  html[dir="rtl"] .status { left:auto;right:17px;border-left:1px solid rgba(255,255,255,.2);border-right:2px solid var(--color-red) }
-  html[dir="rtl"] .car-card__body { text-align:right }
-  html[dir="rtl"] .car-card__bottom { direction:rtl }
-  html[dir="rtl"] .car-card__cta span { transform:rotate(180deg) }
-  html[dir="rtl"] .car-card__cta::after { transform-origin:right }
-  html[dir="rtl"] .car-card:hover .car-card__cta span,html[dir="rtl"] .car-card:focus-within .car-card__cta span { transform:rotate(180deg) translateX(4px) }
 
   .standard__image {
     height:310px;border-radius:10px;

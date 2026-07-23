@@ -174,17 +174,6 @@ button {
   position:relative
 }
 
-.card-primary-link {
-  position:absolute;
-  inset:0;
-  z-index:1;
-  border-radius:inherit;
-  cursor:pointer;
-}
-.card-primary-link:focus-visible { outline:2px solid var(--color-red);outline-offset:-3px }
-.catalog-card .card-actions { position:relative;z-index:3;pointer-events:none }
-.catalog-card .card-actions button { pointer-events:auto }
-
 .header__tools .header-action {
   width:52px;
   height:52px;
@@ -684,7 +673,7 @@ body {
   .form-grid { gap:14px }
   .field input,.field select,.field textarea { min-height:50px;font-size:16px }
   .to-top { width:48px;height:48px;right:auto;inset-inline-end:20px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:30 }
-  .to-top.footer-near,.to-top.content-near,.to-top.card-near { opacity:0;pointer-events:none }
+  .to-top.footer-near,.to-top.content-near { opacity:0;pointer-events:none }
   html[dir="rtl"] .nav.open { align-items:flex-end;text-align:right }
   html[dir="rtl"] .nav__languages button { padding:0 14px 0 0;text-align:right }
   html[dir="rtl"] .nav__languages button::before { left:auto;right:0 }

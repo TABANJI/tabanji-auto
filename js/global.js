@@ -267,6 +267,22 @@
     }, { threshold: 0.05 }).observe(mobileSearch);
   }
 
+  const visibleCards = new Set();
+  const cardOcclusionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) visibleCards.add(entry.target);
+      else visibleCards.delete(entry.target);
+    });
+    const mobile = window.matchMedia('(max-width: 768px)').matches;
+    toTopButton.classList.toggle('card-near', mobile && visibleCards.size > 0);
+  }, { threshold: 0.08 });
+
+  window.tabanjiObserveCards = (scope = document) => {
+    visibleCards.clear();
+    cardOcclusionObserver.disconnect();
+    scope.querySelectorAll('.car-card, .catalog-card').forEach((card) => cardOcclusionObserver.observe(card));
+  };
+
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {

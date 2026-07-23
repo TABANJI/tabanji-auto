@@ -39,49 +39,43 @@
 
   function carTemplate(car) {
     const isFavorite = getFavorites().includes(car.id);
-    const primaryHref = `car.html?id=${encodeURIComponent(car.id)}`;
 
     return `
-      <article class="car-card reveal visible" data-car-url="${primaryHref}">
+      <article class="car-card reveal visible">
         <div class="car-card__media">
-          <img
+          <a class="car-card__image-link" href="car.html?id=${encodeURIComponent(car.id)}" aria-label="${car.brand} ${car.model}"><img
             src="${car.image}"
             alt="${car.brand} ${car.model}, ${car.year}"
             loading="lazy"
-          >
+          ></a>
           <span class="status status--${car.status}">${t(`ui.${car.status}`)}</span>
           <button
-            type="button"
             class="fav ${isFavorite ? 'active' : ''}"
             data-id="${car.id}"
-            data-model="${car.model}"
             aria-label="${t(isFavorite ? 'ui.removeFavourite' : 'ui.addFavourite', { model: car.model })}"
             aria-pressed="${isFavorite}"
           ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg></button>
         </div>
         <div class="car-card__body">
-          <span class="car-card__brand" dir="ltr">${car.brand} · ${car.year}</span>
-          <h3 dir="ltr">${car.model}</h3>
-          <div class="car-card__meta" dir="ltr">
+          <span class="car-card__brand">${car.brand} · ${car.year}</span>
+          <h3><a href="car.html?id=${encodeURIComponent(car.id)}">${car.model}</a></h3>
+          <div class="car-card__meta">
             <span>${car.mileage.toLocaleString('en-GB')} km</span>
             <span>${car.power} HP</span>
             <span>${technicalLabels[car.fuel] ? t(`ui.${technicalLabels[car.fuel]}`) : car.fuel}</span>
           </div>
           <div class="car-card__bottom">
-            <strong class="car-card__price" dir="ltr">${formatPrice(car)}</strong>
-            <span class="text-link car-card__cta">${t('ui.viewDetails')} <span aria-hidden="true">→</span></span>
+            <strong class="car-card__price">${formatPrice(car)}</strong>
+            <a class="text-link" href="car.html?id=${encodeURIComponent(car.id)}">${t('ui.viewDetails')} <span aria-hidden="true">→</span></a>
           </div>
         </div>
-        <a class="card-primary-link" href="${primaryHref}" aria-label="${t('ui.openVehicleDetails', { model: `${car.brand} ${car.model}` })}"></a>
       </article>
     `;
   }
 
   function attachCardEvents() {
     grid.querySelectorAll('.fav').forEach((button) => {
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+      button.addEventListener('click', () => {
         const current = getFavorites();
         const isFavorite = current.includes(button.dataset.id);
         const updated = isFavorite
@@ -97,7 +91,7 @@
         button.setAttribute('aria-pressed', String(!isFavorite));
         button.setAttribute(
           'aria-label',
-          t(isFavorite ? 'ui.addFavourite' : 'ui.removeFavourite', { model: button.dataset.model })
+          `${isFavorite ? 'Add' : 'Remove'} vehicle ${isFavorite ? 'to' : 'from'} favourites`
         );
         updateFavoriteCount();
       });
@@ -114,7 +108,6 @@
       `;
     attachCardEvents();
     attachImageFallbacks();
-    window.tabanjiObserveCards?.(grid);
   }
 
   function populateFilters() {

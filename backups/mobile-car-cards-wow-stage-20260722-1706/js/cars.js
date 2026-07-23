@@ -39,9 +39,6 @@
     available: t('ui.available'), new: t('ui.new'), exclusive: t('ui.exclusive'),
     reserved: t('ui.reserved'), sold: t('ui.sold'), on_request: t('ui.on_request')
   };
-  const technicalLabels = {
-    'Бензин': 'petrol', 'Дизель': 'diesel', 'Гібрид': 'hybrid', 'Електро': 'electric'
-  };
   let visibleLimit = 8;
   let currentResults = [];
   let drawerOpener = null;
@@ -160,9 +157,9 @@
     const primaryText = t('ui.viewDetails');
     const primaryHref = `car.html?id=${encodeURIComponent(car.id)}`;
     return `
-      <article class="catalog-card ${sold ? 'sold' : ''}" data-car-url="${primaryHref}">
+      <article class="catalog-card ${sold ? 'sold' : ''}">
         <div class="catalog-card__media">
-          <img src="${car.image}" alt="${car.brand} ${car.model}, ${car.year}" loading="lazy">
+          <a class="catalog-card__image-link" href="${primaryHref}" aria-label="${car.brand} ${car.model}"><img src="${car.image}" alt="${car.brand} ${car.model}, ${car.year}" loading="lazy"></a>
           <span class="catalog-status catalog-status--${car.status}">${t(`ui.${car.status}`)}</span>
           <button class="catalog-fav ${favorite ? 'active' : ''}" type="button"
             data-favorite="${car.id}" aria-pressed="${favorite}"
@@ -170,25 +167,24 @@
         </div>
         <div class="catalog-card__body">
           <span class="catalog-card__brand" dir="ltr">${car.brand} · ${car.year}</span>
-          <h3 dir="ltr">${car.model}</h3>
+          <h3 dir="ltr"><a href="${primaryHref}">${car.model}</a></h3>
           <div class="catalog-card__specs" dir="ltr">
             <span>${car.mileage.toLocaleString('en-GB')} km</span>
             <span>${car.power} HP</span>
-            <span>${technicalLabels[car.fuel] ? t(`ui.${technicalLabels[car.fuel]}`) : car.fuel}</span>
+            <span>${car.fuel}</span>
           </div>
           <p class="catalog-card__location">${car.location} · ${car.bodyType}</p>
           <p class="catalog-card__description">${car.description}</p>
           <div class="catalog-card__footer">
-            <strong class="catalog-card__price" dir="ltr">${money(car.price)}</strong>
+            <strong class="catalog-card__price">${money(car.price)}</strong>
             <div class="card-actions">
               <button class="quick-button" type="button" data-quick="${car.id}">${t('ui.quickView')}</button>
               <button class="quick-button list-consult" type="button"
                 data-modal="Enquiry about ${car.brand} ${car.model}">Private Consultation</button>
-              <span class="text-link catalog-card__cta">${primaryText} <span aria-hidden="true">→</span></span>
+              <a class="text-link" href="${primaryHref}">${primaryText} →</a>
             </div>
           </div>
         </div>
-        <a class="card-primary-link" href="${primaryHref}" aria-label="${t('ui.openVehicleDetails', { model: `${car.brand} ${car.model}` })}"></a>
       </article>`;
   }
 
@@ -220,7 +216,6 @@
     writeUrl();
     attachImageFallbacks();
     window.tabanjiI18n?.translate(grid);
-    window.tabanjiObserveCards?.(grid);
   }
 
   function activeFilters() {
@@ -373,16 +368,8 @@
     const favorite = event.target.closest('[data-favorite]');
     const quick = event.target.closest('[data-quick]');
     const reset = event.target.closest('[data-reset-all]');
-    if (favorite) {
-      event.preventDefault();
-      event.stopPropagation();
-      toggleFavorite(favorite.dataset.favorite);
-    }
-    if (quick) {
-      event.preventDefault();
-      event.stopPropagation();
-      openQuick(quick.dataset.quick, quick);
-    }
+    if (favorite) toggleFavorite(favorite.dataset.favorite);
+    if (quick) openQuick(quick.dataset.quick, quick);
     if (reset) resetAll();
   });
   chips.addEventListener('click', (event) => {
